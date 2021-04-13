@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "svelte-wasm-chip-8",
   "version": "1.0.0",
   "private": true,
   "scripts": {
