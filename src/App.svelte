@@ -1,4 +1,5 @@
 <script>
+  import wasm from './wasm/Cargo.toml';
   export let name;
 </script>
 

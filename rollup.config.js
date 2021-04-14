@@ -4,6 +4,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
+import rust from "@wasm-tool/rollup-plugin-rust";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -42,10 +43,8 @@ export default {
   },
   plugins: [
     svelte({
-      compilerOptions: {
         // enable run-time checks when not in production
         dev: !production,
-      },
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
@@ -73,6 +72,11 @@ export default {
     // If we're building for production (npm run build
     // instead of npm run dev), minify
     production && terser(),
+
+    rust({
+      verbose: true,
+      serverPath: "/build/",
+    }),
   ],
   watch: {
     clearScreen: false,
