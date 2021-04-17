@@ -1,6 +1,6 @@
-<script>
-  import wasm from './wasm/Cargo.toml';
-  export let name;
+<script lang="ts">
+  //import wasm from './wasm/Cargo.toml';
+  export let name: string;
 </script>
 
 <main>

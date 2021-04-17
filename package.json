@@ -6,14 +6,19 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear",
-    "lint": "eslint src/**",
+    "lint": "eslint src/**/*.{svelte,css,js,ts}",
     "lint-fix": "eslint src/** --fix",
-    "prettier": "prettier --write --plugin-search-dir=. src/**/*.{svelte,css,js}",
-    "clean": "npm run prettier && npm run lint-fix"
+    "prettier": "prettier --write --plugin-search-dir=. src/**/*.{svelte,css,js,ts}",
+    "clean": "npm run prettier && npm run lint-fix",
+    "validate": "svelte-check"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.24.0",
     "eslint-plugin-svelte3": "^3.1.2",
@@ -24,7 +29,11 @@
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^6.0.0",
     "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "svelte-check": "^1.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.0.0"
   },
   "dependencies": {
     "@wasm-tool/rollup-plugin-rust": "^1.0.6",
