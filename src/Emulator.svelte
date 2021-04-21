@@ -1,9 +1,19 @@
 <script lang="typescript">
   import { onMount } from "svelte";
+  import wasm from "./wasm/Cargo.toml";
   
   const COLS: number = 64;
   const ROWS: number = 32;
   
+  async function loadWasm() {
+		const wasmModule = await wasm();
+    const wasmEmulator = new wasmModule.Emulator();
+    const displayArray = wasmEmulator.get_display();
+    console.log(displayArray);
+	}
+
+  loadWasm();
+
   export let scale: number;
   let canvas: HTMLCanvasElement;
 

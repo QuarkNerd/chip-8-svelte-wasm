@@ -20,7 +20,7 @@ impl Emulator {
         }
     }
 
-    pub fn get_display_ptr(&self) -> Uint8Array {
+    pub fn get_display(&self) -> Uint8Array {
         self.display.cells()
     }
 }
