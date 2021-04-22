@@ -21,13 +21,14 @@ impl Emulator {
     }
 
     pub fn get_display(&self) -> Uint8Array {
-        self.display.cells()
+        self.display.pixels()
     }
-}
 
-#[wasm_bindgen]
-pub fn get_memory() -> JsValue {
-    wasm_bindgen::memory()
+    pub fn flip(&mut self, x: &JsValue, y: &JsValue) -> bool {
+        let x_n = x.as_f64().unwrap() as u8; 
+        let y_n = y.as_f64().unwrap() as u8; 
+        self.display.set_pixel(x_n, y_n)
+    }
 }
 
 mod display;
