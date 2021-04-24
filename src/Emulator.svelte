@@ -1,35 +1,18 @@
 <script lang="typescript">
-  import { onMount } from "svelte";
+  import Screen from "./Screen.svelte";
   import wasm from "./wasm/Cargo.toml";
-  
-  const COLS: number = 64;
-  const ROWS: number = 32;
-  
-  async function loadWasm() {
-		const wasmModule = await wasm();
-    const wasmEmulator = new wasmModule.Emulator();
-    const displayArray = wasmEmulator.get_display();
-    console.log(displayArray);
-	}
+
+  let displayArray: Uint8Array;
 
   loadWasm();
 
-  export let scale: number;
-  let canvas: HTMLCanvasElement;
-
-  onMount(() => {
-    const ctx = canvas.getContext("2d");
-    canvas.width = scale * COLS;
-    canvas.height = scale * ROWS;
-  });
+  async function loadWasm() {
+    const wasmModule = await wasm();
+    const wasmEmulator = new wasmModule.Emulator();
+    displayArray = wasmEmulator.get_display();
+  }
 </script>
 
 <main>
-  <canvas bind:this={canvas} />
+  <Screen colour="#000" scale={5} displayArray={displayArray}/>
 </main>
-
-<style>
-  canvas {
-    border: 2px solid black;
-  }
-</style>
