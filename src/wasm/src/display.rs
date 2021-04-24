@@ -1,4 +1,3 @@
-use wasm_bindgen::prelude::*;
 use js_sys::Uint8Array;
 
 const COLS: usize = 64;
@@ -6,10 +5,9 @@ const COLS_U8: u8 = 64;
 const ROWS: usize = 32;
 const ROWS_U8: u8 = 32;
 
-#[wasm_bindgen]
 pub struct Display {
     pixels: [u8; COLS*ROWS],
-    y_wrap: bool,
+    pub y_wrap: bool,
 }
 
 impl Display {
@@ -37,6 +35,10 @@ impl Display {
 
         self.pixels[pixel_num] ^= 1;
         self.pixels[pixel_num] == 0
+    }
+
+    pub fn clear(&mut self) {
+        self.pixels = [0; COLS*ROWS];
     }
 
     pub fn pixels(&self) -> Uint8Array {
