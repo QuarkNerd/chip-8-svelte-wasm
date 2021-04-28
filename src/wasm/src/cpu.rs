@@ -1,13 +1,34 @@
 use js_sys::Uint8Array;
+use crate::*;
+
+static SPEED: u8 = 9;
 
 pub struct CPU {
     keyboard: [u8; 0x10],
+    pub display: Display,
+    memory: [u8; 4096],
+    v: [u8; 0x10],
+    delay: u8,
+    sound: u8,
+    program_counter: u16,
+    stack_pointer: u8,
+    stack: [u8; 0x10],
+    i: u16,
 }
 
 impl CPU {
-    pub fn new() -> CPU {
+    pub fn new(display: Display) -> CPU {
         CPU {
-            keyboard: [0; 0x10]
+            keyboard: [0; 0x10],
+            display,
+            memory: [0; 4096],
+            v: [0; 0x10],
+            delay: 0,
+            sound: 0,
+            program_counter: 0x200,
+            stack_pointer: 0,
+            stack: [0; 0x10],
+            i: 0,
         }
     }
 

@@ -12,7 +12,6 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 #[wasm_bindgen]
 pub struct Emulator {
     cpu: CPU,
-    display: Display
 }
 
 #[wasm_bindgen]
@@ -21,8 +20,7 @@ impl Emulator {
     pub fn new() -> Emulator {
         set_panic_hook();
         Emulator {
-            display: Display::new(),
-            cpu: CPU::new(),
+            cpu: CPU::new(Display::new()),
         }
     }
 
@@ -33,7 +31,7 @@ impl Emulator {
     }
 
     pub fn get_display(&self) -> Uint8Array {
-        self.display.pixels()
+        self.cpu.display.pixels()
     }
 }
 
