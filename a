@@ -1,0 +1,16 @@
+    pub fn on_animation_frame(&mut self) {
+        let seconds_passeda = self.then.elapsed();
+        // slightly too slow
+        if seconds_passeda.as_secs() >= 1 {
+            self.then = Instant::now();
+            console::log_1(&seconds_passeda.as_millis().to_string().into());
+        }
+    }
+
+        display: Display,
+    v: [u8 ; 16],
+    i: u16,
+    delay: u8,
+    sound: u8,
+
+    use crate::*;
