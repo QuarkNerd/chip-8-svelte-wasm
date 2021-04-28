@@ -1,4 +1,6 @@
+use wasm_timer::Instant;
 use wasm_bindgen::prelude::*;
+use web_sys::console;
 use js_sys::Uint8Array;
 use display::*;
 use chip::*;
@@ -23,6 +25,8 @@ impl Emulator {
             chip: Chip::new(),
         }
     }
+
+    pub fn on_animation_frame(&mut self) {}
 
     pub fn get_keys(&self) -> Uint8Array {
         self.chip.keys()

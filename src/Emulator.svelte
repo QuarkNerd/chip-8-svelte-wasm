@@ -4,9 +4,10 @@
   import wasm from "./wasm/Cargo.toml";
 
   let wasmEmulator: any;
-  let keysArray = new Uint8Array(0x10); 
+  let keysArray = new Uint8Array(0x10);
   let displayArray: Uint8Array;
-
+  let loop: number;
+  let screen: Screen;
   loadWasm();
 
   async function loadWasm() {
@@ -14,10 +15,17 @@
     wasmEmulator = new wasmModule.Emulator();
     displayArray = wasmEmulator.get_display();
     keysArray = wasmEmulator.get_keys();
+    loop = requestAnimationFrame(runEmulator);
+  }
+
+  function runEmulator() {
+    wasmEmulator.on_animation_frame();
+    screen.draw();
+    loop = requestAnimationFrame(runEmulator);
   }
 </script>
 
 <main>
-  <Screen colour="#000" scale={5} {displayArray} />
-  <Keyboard bind:keysArray={keysArray}></Keyboard>
+  <Screen bind:this={screen} colour="#000" scale={5} {displayArray} />
+  <Keyboard bind:keysArray />
 </main>
