@@ -3,7 +3,7 @@ use wasm_bindgen::prelude::*;
 use web_sys::console;
 use js_sys::Uint8Array;
 use display::*;
-use chip::*;
+use cpu::*;
 
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
@@ -11,7 +11,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 pub struct Emulator {
-    chip: Chip,
+    cpu: CPU,
     display: Display
 }
 
@@ -22,14 +22,14 @@ impl Emulator {
         set_panic_hook();
         Emulator {
             display: Display::new(),
-            chip: Chip::new(),
+            cpu: CPU::new(),
         }
     }
 
     pub fn on_animation_frame(&mut self) {}
 
     pub fn get_keys(&self) -> Uint8Array {
-        self.chip.keys()
+        self.cpu.keys()
     }
 
     pub fn get_display(&self) -> Uint8Array {
@@ -43,4 +43,4 @@ fn set_panic_hook() {
 }
 
 mod display;
-mod chip;
+mod cpu;
