@@ -18,6 +18,7 @@ pub struct CPU {
 
 impl CPU {
     pub fn new(display: Display) -> CPU {
+        let mut cpu =
         CPU {
             keyboard: [0; 0x10],
             display,
@@ -29,6 +30,18 @@ impl CPU {
             stack_pointer: 0,
             stack: [0; 0x10],
             i: 0,
+        };
+        cpu.load_sprites_into_memory();
+        cpu
+    }
+
+    pub fn keys(&self) -> Uint8Array {
+        unsafe { Uint8Array::view(&self.keyboard) }
+    }
+
+    pub fn load_rom(&mut self, rom: Uint8Array) {
+        for loc in 0..rom.length() {
+            self.memory[0x200 + loc as usize] = rom.get_index(loc);
         }
     }
 
@@ -165,7 +178,28 @@ impl CPU {
         opcode as u8 & 0x00FF
     }
 
-    pub fn keys(&self) -> Uint8Array {
-        unsafe { Uint8Array::view(&self.keyboard) }
+    fn load_sprites_into_memory(&mut self) {
+        let sprites: [u8; 0x50] = [
+            0xf0, 0x90, 0x90, 0x90, 0xf0, // 0
+            0x20, 0x60, 0x20, 0x20, 0x70, // 1
+            0xf0, 0x10, 0xf0, 0x80, 0xf0, // 2
+            0xf0, 0x10, 0xf0, 0x10, 0xf0, // 3
+            0x90, 0x90, 0xf0, 0x10, 0x10, // 4
+            0xf0, 0x80, 0xf0, 0x10, 0xf0, // 5
+            0xf0, 0x80, 0xf0, 0x90, 0xf0, // 6
+            0xf0, 0x10, 0x20, 0x40, 0x40, // 7
+            0xf0, 0x90, 0xf0, 0x90, 0xf0, // 8
+            0xf0, 0x90, 0xf0, 0x10, 0xf0, // 9
+            0xf0, 0x90, 0xf0, 0x90, 0x90, // A
+            0xe0, 0x90, 0xe0, 0x90, 0xe0, // B
+            0xf0, 0x80, 0x80, 0x80, 0xf0, // C
+            0xe0, 0x90, 0x90, 0x90, 0xe0, // D
+            0xf0, 0x80, 0xf0, 0x80, 0xf0, // E
+            0xf0, 0x80, 0xf0, 0x80, 0x80, // F
+        ];
+
+        for i in 0..0x50 {
+            self.memory[i] = sprites[i];
+        };
     }
 }

@@ -24,7 +24,13 @@ impl Emulator {
         }
     }
 
-    pub fn on_animation_frame(&mut self) {}
+    pub fn load_rom(&mut self, rom: Uint8Array) {
+        self.cpu.load_rom(rom);
+    }
+
+    pub fn on_animation_frame(&mut self) {
+        self.cpu.cycle();
+    }
 
     pub fn get_keys(&self) -> Uint8Array {
         self.cpu.keys()
