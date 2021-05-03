@@ -1,5 +1,5 @@
-use js_sys::Uint8Array;
 use crate::*;
+use js_sys::Uint8Array;
 
 static SPEED: u8 = 9;
 
@@ -10,9 +10,9 @@ pub struct CPU {
     v: [u8; 0x10],
     delay: u8,
     sound: u8,
-    program_counter: u16,
-    stack_pointer: u8,
-    stack: [u8; 0x10],
+    pc: u16,
+    stack_pointer: usize,
+    stack: [u16; 0x10],
     i: u16,
 }
 
@@ -25,7 +25,7 @@ impl CPU {
             v: [0; 0x10],
             delay: 0,
             sound: 0,
-            program_counter: 0x200,
+            pc: 0x200,
             stack_pointer: 0,
             stack: [0; 0x10],
             i: 0,

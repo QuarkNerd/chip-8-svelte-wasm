@@ -6,20 +6,20 @@ const ROWS: usize = 32;
 const ROWS_U8: u8 = 32;
 
 pub struct Display {
-    pixels: [u8; COLS*ROWS],
+    pixels: [u8; COLS * ROWS],
     pub y_wrap: bool,
 }
 
 impl Display {
     pub fn new() -> Display {
         let mut disp = Display {
-            pixels: [0; COLS*ROWS],
-            y_wrap: false
+            pixels: [0; COLS * ROWS],
+            y_wrap: false,
         };
 
-        for n in 0..COLS*ROWS {
-            disp.pixels[n] = rand::random::<u8>()%2;
-        };
+        for n in 0..COLS * ROWS {
+            disp.pixels[n] = rand::random::<u8>() % 2;
+        }
 
         disp
     }
@@ -27,9 +27,11 @@ impl Display {
     pub fn set_pixel(&mut self, mut x: u8, mut y: u8) -> bool {
         x = x % COLS_U8;
         if y > ROWS_U8 {
-            if !self.y_wrap { return false };
+            if !self.y_wrap {
+                return false;
+            };
             y = y % ROWS_U8;
-        }; 
+        };
 
         let pixel_num = x as usize + y as usize * COLS;
 
@@ -38,7 +40,7 @@ impl Display {
     }
 
     pub fn clear(&mut self) {
-        self.pixels = [0; COLS*ROWS];
+        self.pixels = [0; COLS * ROWS];
     }
 
     pub fn pixels(&self) -> Uint8Array {

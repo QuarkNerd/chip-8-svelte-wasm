@@ -1,9 +1,9 @@
-use wasm_timer::Instant;
-use wasm_bindgen::prelude::*;
-use web_sys::console;
-use js_sys::Uint8Array;
-use display::*;
 use cpu::*;
+use display::*;
+use js_sys::Uint8Array;
+use wasm_bindgen::prelude::*;
+use wasm_timer::Instant;
+use web_sys::console;
 
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
@@ -40,5 +40,5 @@ fn set_panic_hook() {
     console_error_panic_hook::set_once();
 }
 
-mod display;
 mod cpu;
+mod display;
