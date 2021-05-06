@@ -1,4 +1,5 @@
 use js_sys::Uint8Array;
+use web_sys::console;
 
 const COLS: usize = 64;
 const COLS_U8: u8 = 64;
@@ -17,16 +18,16 @@ impl Display {
             y_wrap: false,
         };
 
-        for n in 0..COLS * ROWS {
-            disp.pixels[n] = rand::random::<u8>() % 2;
-        }
+        // for n in 0..COLS * ROWS {
+        //     disp.pixels[n] = rand::random::<u8>() % 2;
+        // }
 
         disp
     }
 
     pub fn set_pixel(&mut self, mut x: u8, mut y: u8) -> bool {
         x = x % COLS_U8;
-        if y > ROWS_U8 {
+        if y >= ROWS_U8 {
             if !self.y_wrap {
                 return false;
             };
@@ -34,7 +35,6 @@ impl Display {
         };
 
         let pixel_num = x as usize + y as usize * COLS;
-
         self.pixels[pixel_num] ^= 1;
         self.pixels[pixel_num] == 0
     }
