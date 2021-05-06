@@ -15,6 +15,14 @@
     wasmEmulator = new wasmModule.Emulator();
     displayArray = wasmEmulator.get_display();
     keysArray = wasmEmulator.get_keys();
+    loadRom();
+  }
+
+  async function loadRom() {
+    let response = await fetch("roms/BLITZZ");
+    let arrayBuffer = await response.arrayBuffer();
+    let rom = new Uint8Array(arrayBuffer);
+    wasmEmulator.load_rom(rom);
     loop = requestAnimationFrame(runEmulator);
   }
 
