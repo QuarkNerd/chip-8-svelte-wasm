@@ -13,16 +13,10 @@ pub struct Display {
 
 impl Display {
     pub fn new() -> Display {
-        let mut disp = Display {
+        Display {
             pixels: [0; COLS * ROWS],
             y_wrap: false,
-        };
-
-        // for n in 0..COLS * ROWS {
-        //     disp.pixels[n] = rand::random::<u8>() % 2;
-        // }
-
-        disp
+        }
     }
 
     pub fn set_pixel(&mut self, mut x: u8, mut y: u8) -> bool {

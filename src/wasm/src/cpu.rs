@@ -48,7 +48,7 @@ impl CPU {
 
     pub fn cycle(&mut self) {
         for _ in 0..SPEED {
-            self.executeNextInstruction();
+            self.execute_next_instruction();
         }
 
         //timers
@@ -57,7 +57,7 @@ impl CPU {
         }
     }
 
-    fn executeNextInstruction(&mut self) {
+    fn execute_next_instruction(&mut self) {
         // Instruction has 4 Base-16 characters
         // 0x0nnn (addr) or 0x0xyn (n = nibble) or 0x00kk (byte) 0xC000 (code)
         let opcode = ((self.memory[self.pc as usize] as u16) << 8)
