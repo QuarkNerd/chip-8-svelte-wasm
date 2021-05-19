@@ -34,6 +34,6 @@
 </script>
 
 <main>
-  <Screen bind:this={screen} colour="#000" scale={5} {displayArray} />
+  <Screen bind:this={screen} offColour="#9aa040" onColour="#000000" {displayArray} />
   <Keyboard bind:keysArray />
 </main>

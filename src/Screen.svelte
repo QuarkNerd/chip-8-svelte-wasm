@@ -1,11 +1,12 @@
 <script lang="typescript">
   import { onMount } from "svelte";
-  export let scale: number;
-  export let colour: string;
+  export let onColour: string;
+  export let offColour: string;
   export let displayArray = new Uint8Array();
 
   const COLS: number = 64;
   const ROWS: number = 32;
+  const scale: number = 5;
 
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
@@ -14,12 +15,15 @@
     ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     canvas.width = scale * COLS;
     canvas.height = scale * ROWS;
+    ctx.fillStyle = offColour;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   });
 
   export function draw() {
     if (ctx) {
-      ctx.fillStyle = colour;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = offColour;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = onColour;
       displayArray.forEach((on: number, i: number) => {
         if (on) {
           const x = i % COLS;
