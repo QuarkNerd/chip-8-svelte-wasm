@@ -39,6 +39,9 @@
     <Screen bind:this={screen} offColour="#9aa040" onColour="#000000" {displayArray} />
   </div>
   <Keyboard bind:keysArray />
+  <div class="speaker">
+    <Speaker />
+  </div>
 </main>
 
 <style>
@@ -59,5 +62,11 @@
     margin: 20px auto;
     padding: 30px 30px;
     border-radius: 45px 25px 0px;
+  }
+
+  .speaker {
+    position: absolute;
+    left: 340px;
+    top: 300px;
   }
 </style>
