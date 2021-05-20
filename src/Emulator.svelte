@@ -1,6 +1,7 @@
 <script lang="typescript">
   import Screen from "./Screen.svelte";
   import Keyboard from "./Keyboard.svelte";
+  import Speaker from "./Speaker.svelte";
   import wasm from "./wasm/Cargo.toml";
 
   let wasmEmulator: any;
@@ -19,7 +20,7 @@
   }
 
   async function loadRom() {
-    let response = await fetch("roms/BLITZZ");
+    let response = await fetch("roms/BLITZ");
     let arrayBuffer = await response.arrayBuffer();
     let rom = new Uint8Array(arrayBuffer);
     wasmEmulator.load_rom(rom);
@@ -34,7 +35,9 @@
 </script>
 
 <main>
-  <Screen bind:this={screen} offColour="#9aa040" onColour="#000000" {displayArray} />
+  <div class="screen-frame">
+    <Screen bind:this={screen} offColour="#9aa040" onColour="#000000" {displayArray} />
+  </div>
   <Keyboard bind:keysArray />
 </main>
 
@@ -47,5 +50,14 @@
     background-color: lightgray;
     box-shadow:
       rgb(0 0 0) -4px 6px 10px, rgb(255 255 255 / 25%) -6px 8px 6px inset;
+  }
+
+  .screen-frame {
+    height: 160px;
+    width: 320px;
+    background-color: darkgray;
+    margin: 20px auto;
+    padding: 30px 30px;
+    border-radius: 45px 25px 0px;
   }
 </style>
