@@ -61,9 +61,7 @@
   <div class="holder">
     {#each keys as { keyCode, display }}
       <div class="key" class:pressed={keysArray[keyCode]}>
-        <p>
           {display}
-        </p>
       </div>
     {/each}
   </div>
@@ -71,28 +69,30 @@
 
 <style>
   .holder {
+    height: 170px;
+    width: 170px;
+    margin: 15px auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    column-gap: 5%;
-    row-gap: 5%;
-    width: 40%;
-    height: 20%;
+    grid-template-columns: 19% 19% 19% 19%;
+    grid-template-rows: 19% 19% 19% 19%;
+    column-gap: 8%;
+    row-gap: 8%;
   }
 
   .key {
-    width: 100%;
-    position: relative;
-    background-color: #f4f4f4;
-    border: 1px solid black;
-    border-radius: 2px;
+    border-radius: 50%;
+    color: white;
+    background-color: maroon;
+    box-shadow:
+      rgb(0 0 0) -2px 3px 5px, rgb(255 255 255 / 25%) -3px 4px 3px inset;
+    text-align: center;
+    line-height: 30px;
   }
 
   .key.pressed {
-    background-color: lightgrey;
-  }
-
-  p {
-    font-size: 2rem;
+    box-shadow:
+      -3px 4px 3px rgba(0, 0, 0, 0.25) inset,
+      2px -2px 3px rgba(0, 0, 0, 0.25) inset;
+    font-size: 0.9rem;
   }
 </style>
