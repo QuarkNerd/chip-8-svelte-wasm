@@ -46,8 +46,9 @@
 
 <style>
   main {
+    position: relative;
     padding: 10px 0;
-    margin: 0;
+    margin: 10px auto;
     width: 450px;
     border-radius: 35px;
     background-color: lightgray;
