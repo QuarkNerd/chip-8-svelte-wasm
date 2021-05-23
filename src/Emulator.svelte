@@ -2,6 +2,7 @@
   import Screen from "./Screen.svelte";
   import Keyboard from "./Keyboard.svelte";
   import Speaker from "./Speaker.svelte";
+  import GameSlot from "./GameSlot.svelte";
   import wasm from "./wasm/Cargo.toml";
 
   let wasmEmulator: any;
@@ -42,6 +43,9 @@
   <div class="speaker">
     <Speaker />
   </div>
+  <div class="gameslot">
+    <GameSlot />
+  </div>
 </main>
 
 <style>
@@ -69,5 +73,11 @@
     position: absolute;
     left: 340px;
     top: 300px;
+  }
+
+  .gameslot {
+    position: absolute;
+    left: 20px;
+    top: 280px;
   }
 </style>
