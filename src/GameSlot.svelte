@@ -8,7 +8,7 @@
   main {
     height: 35px;
     width: 110px;
-    border-radius: 4px;
+    border-radius: 0 4px 4px 15px;
     background: rgba(0, 0, 0, 0.35);
     box-shadow: rgb(0 0 0 / 60%) -6px 6px 1px inset;
   }
@@ -22,6 +22,6 @@
     width: 10px;
     background-color: rgb(187, 135, 5);
     box-shadow:
-      rgb(0 0 0) -1px 2px 2px, rgb(255 255 255 / 25%) -6px 8px 3px inset;
+      rgb(0 0 0) -4px 5px 6px, rgb(255 255 255 / 25%) -6px 8px 3px inset;
   }
 </style>
