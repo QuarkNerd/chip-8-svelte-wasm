@@ -37,7 +37,12 @@
 
 <main>
   <div class="screen-frame">
-    <Screen bind:this={screen} offColour="#9aa040" onColour="#000000" {displayArray} />
+    <Screen
+      bind:this={screen}
+      offColour="#9aa040"
+      onColour="#000000"
+      {displayArray}
+    />
   </div>
   <Keyboard bind:keysArray />
   <div class="speaker">
@@ -56,8 +61,8 @@
     width: 450px;
     border-radius: 35px;
     background-color: lightgray;
-    box-shadow:
-      rgb(0 0 0) -4px 6px 10px, rgb(255 255 255 / 25%) -6px 8px 6px inset;
+    box-shadow: rgb(0 0 0) -4px 6px 10px,
+      rgb(255 255 255 / 25%) -6px 8px 6px inset;
   }
 
   .screen-frame {

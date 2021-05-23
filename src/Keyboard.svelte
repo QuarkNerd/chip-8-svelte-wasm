@@ -61,7 +61,7 @@
   <div class="holder">
     {#each keys as { keyCode, display }}
       <div class="key" class:pressed={keysArray[keyCode]}>
-          {display}
+        {display}
       </div>
     {/each}
   </div>
@@ -83,15 +83,14 @@
     border-radius: 50%;
     color: white;
     background-color: maroon;
-    box-shadow:
-      rgb(0 0 0) -2px 3px 5px, rgb(255 255 255 / 25%) -3px 4px 3px inset;
+    box-shadow: rgb(0 0 0) -2px 3px 5px,
+      rgb(255 255 255 / 25%) -3px 4px 3px inset;
     text-align: center;
     line-height: 30px;
   }
 
   .key.pressed {
-    box-shadow:
-      -3px 4px 3px rgba(0, 0, 0, 0.25) inset,
+    box-shadow: -3px 4px 3px rgba(0, 0, 0, 0.25) inset,
       2px -2px 3px rgba(0, 0, 0, 0.25) inset;
     font-size: 0.9rem;
   }

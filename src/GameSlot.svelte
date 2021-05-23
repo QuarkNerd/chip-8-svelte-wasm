@@ -1,7 +1,7 @@
 <main>
-  <div class="connector"></div>
-  <div class="connector"></div>
-  <div class="connector"></div>
+  <div class="connector" />
+  <div class="connector" />
+  <div class="connector" />
 </main>
 
 <style>
@@ -21,7 +21,7 @@
     height: 4px;
     width: 10px;
     background-color: rgb(187, 135, 5);
-    box-shadow:
-      rgb(0 0 0) -4px 5px 6px, rgb(255 255 255 / 25%) -6px 8px 3px inset;
+    box-shadow: rgb(0 0 0) -4px 5px 6px,
+      rgb(255 255 255 / 25%) -6px 8px 3px inset;
   }
 </style>

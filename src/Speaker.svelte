@@ -1,8 +1,8 @@
 <main>
-  <div class="band"></div>
-  <div class="band"></div>
-  <div class="band"></div>
-  <div class="band"></div>
+  <div class="band" />
+  <div class="band" />
+  <div class="band" />
+  <div class="band" />
 </main>
 
 <style>

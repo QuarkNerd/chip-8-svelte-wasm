@@ -16,7 +16,8 @@
     width: 82px;
     border-radius: 0 4px 4px 15px;
 
-    box-shadow: rgb(0 0 0) -2px 3px 5px, rgb(255 255 255 / 25%) -3px 4px 3px inset;
+    box-shadow: rgb(0 0 0) -2px 3px 5px,
+      rgb(255 255 255 / 25%) -3px 4px 3px inset;
     text-align: center;
 
     display: flex;
