@@ -21,6 +21,8 @@
   }
 
   async function loadRom() {
+    cancelAnimationFrame(loop);
+    screen.resetScreen();
     let response = await fetch("roms/BLITZ");
     let arrayBuffer = await response.arrayBuffer();
     let rom = new Uint8Array(arrayBuffer);

@@ -25,6 +25,7 @@ impl Emulator {
     }
 
     pub fn load_rom(&mut self, rom: Uint8Array) {
+        self.reset();
         self.cpu.load_rom(rom);
     }
 
@@ -38,6 +39,10 @@ impl Emulator {
 
     pub fn get_display(&self) -> Uint8Array {
         self.cpu.display.pixels()
+    }
+
+    fn reset(&mut self) {
+        self.cpu = CPU::new(Display::new());
     }
 }
 

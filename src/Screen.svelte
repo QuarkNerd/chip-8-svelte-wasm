@@ -21,8 +21,7 @@
 
   export function draw() {
     if (ctx) {
-      ctx.fillStyle = offColour;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      resetScreen();
       ctx.fillStyle = onColour;
       displayArray.forEach((on: number, i: number) => {
         if (on) {
@@ -32,6 +31,11 @@
         }
       });
     }
+  }
+
+  export function resetScreen() {
+    ctx.fillStyle = offColour;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 </script>
 
