@@ -2,10 +2,7 @@
   import Emulator from "./Emulator.svelte";
   import GamesHolder from "./GamesHolder.svelte";
 
-  interface Game {
-    name: string;
-    colour: string;
-  }
+  import type { Game } from  './types'
 
   const games: Game[] = [
     { name: "15PUZZLE", colour: "blue" },

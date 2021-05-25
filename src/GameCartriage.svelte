@@ -1,21 +1,21 @@
 <script lang="typescript">
   import { createEventDispatcher } from "svelte";
+  import type { Game } from "./types";
 
-  export let name: string;
-  export let colour: string;
+  export let game: Game;
 
   const dispatch = createEventDispatcher();
 
   function gameClicked() {
     dispatch("gameClicked", {
-      game: name,
+      game: game.name,
     });
   }
 </script>
 
-<main on:click={gameClicked} style="background: {colour};">
+<main on:click={gameClicked} style="background: {game.colour};">
   <div class="logo">C8</div>
-  <div class="name">{name}</div>
+  <div class="name">{game.name}</div>
 </main>
 
 <style>

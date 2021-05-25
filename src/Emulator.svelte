@@ -4,21 +4,19 @@
   import Speaker from "./Speaker.svelte";
   import GameSlot from "./GameSlot.svelte";
   import GameCartriage from "./GameCartriage.svelte";
+
+  import type { Game } from "./types";
+
   import wasm from "./wasm/Cargo.toml";
 
-  export let selectedGame:
-    | {
-        name: string;
-        colour: string;
-      }
-    | undefined;
+  export let selectedGame: Game | undefined;
 
   let wasmEmulator: any;
   let keysArray = new Uint8Array(0x10);
   let displayArray: Uint8Array;
   let loop: number;
   let screen: Screen;
-  
+
   loadWasm();
   $: loadRom(selectedGame?.name);
 
@@ -64,7 +62,7 @@
   <div class="gameslot">
     <GameSlot />
     {#if selectedGame}
-      <GameCartriage on:gameClicked {...selectedGame} />
+      <GameCartriage on:gameClicked game={selectedGame} />
     {/if}
   </div>
 </main>
