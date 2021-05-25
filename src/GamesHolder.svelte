@@ -1,11 +1,16 @@
 <script lang="typescript">
   import GameCartriage from "./GameCartriage.svelte";
-  export let games: string[] = [];
+  export let games: {
+    name: string;
+    colour: string;
+  }[];
 </script>
 
 <main>
   {#each games as game}
-    <GameCartriage name={game} colour="blue"/>
+    <div>
+      <GameCartriage on:gameClicked {...game} />
+    </div>
   {/each}
 </main>
 

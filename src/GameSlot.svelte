@@ -7,7 +7,7 @@
 <style>
   main {
     height: 35px;
-    width: 110px;
+    width: 100px;
     border-radius: 0 4px 4px 15px;
     background: rgba(0, 0, 0, 0.35);
     box-shadow: rgb(0 0 0 / 60%) -6px 6px 1px inset;

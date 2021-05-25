@@ -1,9 +1,19 @@
 <script lang="typescript">
+  import { createEventDispatcher } from "svelte";
+
   export let name: string;
   export let colour: string;
+
+  const dispatch = createEventDispatcher();
+
+  function gameClicked() {
+    dispatch("gameClicked", {
+      game: name,
+    });
+  }
 </script>
 
-<main style="background: {colour};">
+<main on:click={gameClicked} style="background: {colour};">
   <div class="logo">C8</div>
   <div class="name">{name}</div>
 </main>

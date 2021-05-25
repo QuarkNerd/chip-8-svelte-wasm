@@ -3,27 +3,38 @@
   import Keyboard from "./Keyboard.svelte";
   import Speaker from "./Speaker.svelte";
   import GameSlot from "./GameSlot.svelte";
+  import GameCartriage from "./GameCartriage.svelte";
   import wasm from "./wasm/Cargo.toml";
+
+  export let selectedGame:
+    | {
+        name: string;
+        colour: string;
+      }
+    | undefined;
 
   let wasmEmulator: any;
   let keysArray = new Uint8Array(0x10);
   let displayArray: Uint8Array;
   let loop: number;
   let screen: Screen;
+  
   loadWasm();
+  $: loadRom(selectedGame?.name);
 
   async function loadWasm() {
     const wasmModule = await wasm();
     wasmEmulator = new wasmModule.Emulator();
     displayArray = wasmEmulator.get_display();
     keysArray = wasmEmulator.get_keys();
-    loadRom();
+    loadRom(selectedGame?.name);
   }
 
-  async function loadRom() {
+  async function loadRom(game: string | undefined) {
     cancelAnimationFrame(loop);
     screen.resetScreen();
-    let response = await fetch("roms/BLITZ");
+    if (!game) return;
+    let response = await fetch(`roms/${game}`);
     let arrayBuffer = await response.arrayBuffer();
     let rom = new Uint8Array(arrayBuffer);
     wasmEmulator.load_rom(rom);
@@ -52,6 +63,9 @@
   </div>
   <div class="gameslot">
     <GameSlot />
+    {#if selectedGame}
+      <GameCartriage on:gameClicked {...selectedGame} />
+    {/if}
   </div>
 </main>
 
@@ -59,9 +73,11 @@
   main {
     position: relative;
     padding: 10px 0;
-    margin: 10px auto;
+    margin: 0 5px;
     width: 450px;
     border-radius: 35px;
+    flex-shrink: 0;
+
     background-color: lightgray;
     box-shadow: rgb(0 0 0) -4px 6px 10px,
       rgb(255 255 255 / 25%) -6px 8px 6px inset;
