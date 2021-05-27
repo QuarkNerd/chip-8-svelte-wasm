@@ -2,7 +2,36 @@
   import Emulator from "./Emulator.svelte";
   import GamesHolder from "./GamesHolder.svelte";
 
-  import type { Game } from  './types'
+  import type { Game, Transition } from "./types";
+
+  import { quintOut } from "svelte/easing";
+  import { crossfade } from "svelte/transition";
+
+  const [send, receive] = crossfade({
+    duration: (d) => Math.sqrt(d * 200),
+
+    fallback(node, _, __) {
+      console.log(node);
+      console.log(_);
+      console.log(__);
+      const style = getComputedStyle(node);
+      const transform = style.transform === "none" ? "" : style.transform;
+
+      return {
+        duration: 600,
+        easing: quintOut,
+        css: (t) => `
+  				transform: ${transform} scale(${t});
+  				opacity: ${t}
+  			`,
+      };
+    },
+  });
+
+  const cartriageTransition: Transition = {
+    send,
+    receive,
+  };
 
   const games: Game[] = [
     { name: "15PUZZLE", colour: "blue" },
@@ -42,8 +71,12 @@
 </script>
 
 <main>
-  <Emulator on:gameClicked={gameClicked} {selectedGame} />
-  <GamesHolder on:gameClicked={gameClicked} games={remaingGames} />
+  <Emulator {cartriageTransition} on:gameClicked={gameClicked} {selectedGame} />
+  <GamesHolder
+    {cartriageTransition}
+    on:gameClicked={gameClicked}
+    games={remaingGames}
+  />
 </main>
 
 <style>

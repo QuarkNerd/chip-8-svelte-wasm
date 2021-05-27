@@ -1,13 +1,17 @@
 <script lang="typescript">
   import GameCartriage from "./GameCartriage.svelte";
-  import type { Game } from  './types';
+  import type { Game, Transition } from "./types";
 
   export let games: Game[];
+  export let cartriageTransition: Transition;
+
+  const send = cartriageTransition.send;
+  const receive = cartriageTransition.receive;
 </script>
 
 <main>
-  {#each games as game}
-    <div>
+  {#each games as game (game.name)}
+    <div in:receive={{ key: game.name }} out:send={{ key: game.name }}>
       <GameCartriage on:gameClicked {game} />
     </div>
   {/each}

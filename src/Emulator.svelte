@@ -5,11 +5,12 @@
   import GameSlot from "./GameSlot.svelte";
   import GameCartriage from "./GameCartriage.svelte";
 
-  import type { Game } from "./types";
+  import type { Game, Transition } from "./types";
 
   import wasm from "./wasm/Cargo.toml";
 
   export let selectedGame: Game | undefined;
+  export let cartriageTransition: Transition;
 
   let wasmEmulator: any;
   let keysArray = new Uint8Array(0x10);
@@ -30,7 +31,7 @@
 
   async function loadRom(game: string | undefined) {
     cancelAnimationFrame(loop);
-    screen.resetScreen();
+    screen?.resetScreen();
     if (!game) return;
     let response = await fetch(`roms/${game}`);
     let arrayBuffer = await response.arrayBuffer();
@@ -44,6 +45,10 @@
     screen.draw();
     loop = requestAnimationFrame(runEmulator);
   }
+  const send = cartriageTransition.send;
+  const receive = cartriageTransition.receive;
+  let gameArray: Game[] = [];
+  $: gameArray = selectedGame ? [selectedGame] : [];
 </script>
 
 <main>
@@ -61,9 +66,13 @@
   </div>
   <div class="gameslot">
     <GameSlot />
-    {#if selectedGame}
-      <GameCartriage on:gameClicked game={selectedGame} />
-    {/if}
+    <!-- {#if selectedGame} -->
+    {#each gameArray as game (game.name)}
+      <div in:receive={{ key: game.name }} out:send={{ key: game.name }}>
+        <GameCartriage on:gameClicked {game} />
+      </div>
+    {/each}
+    <!-- {/if} -->
   </div>
 </main>
 
