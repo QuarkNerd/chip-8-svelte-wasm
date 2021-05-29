@@ -32,6 +32,8 @@
 
     display: flex;
     flex-direction: row;
+
+    cursor: default;
   }
 
   .logo {

@@ -1,4 +1,6 @@
 <script lang="typescript">
+  import { flip } from "svelte/animate";
+
   import Screen from "./Screen.svelte";
   import Keyboard from "./Keyboard.svelte";
   import Speaker from "./Speaker.svelte";
@@ -66,13 +68,15 @@
   </div>
   <div class="gameslot">
     <GameSlot />
-    <!-- {#if selectedGame} -->
     {#each gameArray as game (game.name)}
-      <div in:receive={{ key: game.name }} out:send={{ key: game.name }}>
+      <div
+        in:receive={{ key: game.name }}
+        out:send={{ key: game.name }}
+        animate:flip
+      >
         <GameCartriage on:gameClicked {game} />
       </div>
     {/each}
-    <!-- {/if} -->
   </div>
 </main>
 

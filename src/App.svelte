@@ -7,13 +7,13 @@
   import { quintOut } from "svelte/easing";
   import { crossfade } from "svelte/transition";
 
+  const GAME_CHOOSE_DURATION: number = 700;
+  let is_game_changing = false;
+
   const [send, receive] = crossfade({
-    duration: (d) => Math.sqrt(d * 200),
+    duration: (_) => GAME_CHOOSE_DURATION,
 
     fallback(node, _, __) {
-      console.log(node);
-      console.log(_);
-      console.log(__);
       const style = getComputedStyle(node);
       const transform = style.transform === "none" ? "" : style.transform;
 
@@ -65,9 +65,13 @@
   $: selectedGame = games.find((g) => g.name === selectedGameName);
   $: remaingGames = games.filter((g) => g.name !== selectedGameName);
 
-  const gameClicked = (event: any) =>
-    (selectedGameName =
-      event.detail.game === selectedGameName ? null : event.detail.game);
+  const gameClicked = (event: any) => {
+    if (is_game_changing) return;
+    is_game_changing = true;
+    selectedGameName =
+      event.detail.game === selectedGameName ? null : event.detail.game;
+    setTimeout(() => (is_game_changing = false), GAME_CHOOSE_DURATION);
+  };
 </script>
 
 <main>

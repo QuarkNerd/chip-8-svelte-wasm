@@ -1,4 +1,6 @@
 <script lang="typescript">
+  import { flip } from "svelte/animate";
+
   import GameCartriage from "./GameCartriage.svelte";
   import type { Game, Transition } from "./types";
 
@@ -11,7 +13,11 @@
 
 <main>
   {#each games as game (game.name)}
-    <div in:receive={{ key: game.name }} out:send={{ key: game.name }}>
+    <div
+      in:receive={{ key: game.name }}
+      out:send={{ key: game.name }}
+      animate:flip
+    >
       <GameCartriage on:gameClicked {game} />
     </div>
   {/each}
@@ -25,7 +31,6 @@
     height: 400px;
     width: 280px;
     border-radius: 35px;
-    flex-shrink: 0;
 
     background-color: lightgray;
     box-shadow: rgb(0 0 0) -4px 6px 10px,
@@ -35,5 +40,7 @@
 
     display: flex;
     flex-flow: row wrap;
+    flex-shrink: 0;
+    justify-content: space-around;
   }
 </style>
