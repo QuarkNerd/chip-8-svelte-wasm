@@ -68,11 +68,13 @@
   </div>
   <div class="gameslot">
     <GameSlot />
+  </div>
     {#each gameArray as game (game.name)}
       <div
         in:receive={{ key: game.name }}
         out:send={{ key: game.name }}
         animate:flip
+        class="gameslot"
       >
         <GameCartriage on:gameClicked {game} />
       </div>
