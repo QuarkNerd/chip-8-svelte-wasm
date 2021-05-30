@@ -19,6 +19,7 @@
   let displayArray: Uint8Array;
   let loop: number;
   let screen: Screen;
+  let playing: boolean = false;
 
   loadWasm();
   $: loadRom(selectedGame?.name);
@@ -34,15 +35,17 @@
   async function loadRom(game: string | undefined) {
     cancelAnimationFrame(loop);
     screen?.resetScreen();
-    if (!game) return;
+    if (!game) return (playing = false);
     let response = await fetch(`roms/${game}`);
     let arrayBuffer = await response.arrayBuffer();
     let rom = new Uint8Array(arrayBuffer);
     wasmEmulator.load_rom(rom);
     loop = requestAnimationFrame(runEmulator);
+    playing = true;
   }
 
   function runEmulator() {
+    if (!playing) return;
     wasmEmulator.on_animation_frame();
     screen.draw();
     loop = requestAnimationFrame(runEmulator);
@@ -79,7 +82,6 @@
         <GameCartriage on:gameClicked {game} />
       </div>
     {/each}
-  </div>
 </main>
 
 <style>
