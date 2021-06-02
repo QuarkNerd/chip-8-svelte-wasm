@@ -34,30 +34,30 @@
   };
 
   const games: Game[] = [
-    { name: "15PUZZLE", colour: "blue" },
-    { name: "BLINKY", colour: "blue" },
-    { name: "BLITZ", colour: "blue" },
-    { name: "BRIX", colour: "blue" },
-    { name: "CONNECT4", colour: "blue" },
-    { name: "GUESS", colour: "blue" },
-    { name: "HIDDEN", colour: "blue" },
-    { name: "IBM", colour: "blue" },
-    { name: "INVADERS", colour: "blue" },
-    { name: "KALEID", colour: "blue" },
-    { name: "MAZE", colour: "blue" },
-    { name: "MERLIN", colour: "blue" },
-    { name: "MISSILE", colour: "blue" },
-    { name: "PONG", colour: "blue" },
-    { name: "PONG2", colour: "blue" },
-    { name: "PUZZLE", colour: "blue" },
-    { name: "SYZYGY", colour: "blue" },
-    { name: "TANK", colour: "blue" },
-    { name: "TETRIS", colour: "blue" },
-    { name: "TICTAC", colour: "blue" },
-    { name: "UFO", colour: "blue" },
-    { name: "VBRIX", colour: "blue" },
-    { name: "VERS", colour: "blue" },
-    { name: "WIPEOFF", colour: "blue" },
+    { name: "15PUZZLE", colour: getRandomColour() },
+    { name: "BLINKY", colour: getRandomColour() },
+    { name: "BLITZ", colour: getRandomColour() },
+    { name: "BRIX", colour: getRandomColour() },
+    { name: "CONNECT4", colour: getRandomColour() },
+    { name: "GUESS", colour: getRandomColour() },
+    { name: "HIDDEN", colour: getRandomColour() },
+    { name: "IBM", colour: getRandomColour() },
+    { name: "INVADERS", colour: getRandomColour() },
+    { name: "KALEID", colour: getRandomColour() },
+    { name: "MAZE", colour: getRandomColour() },
+    { name: "MERLIN", colour: getRandomColour() },
+    { name: "MISSILE", colour: getRandomColour() },
+    { name: "PONG", colour: getRandomColour() },
+    { name: "PONG2", colour: getRandomColour() },
+    { name: "PUZZLE", colour: getRandomColour() },
+    { name: "SYZYGY", colour: getRandomColour() },
+    { name: "TANK", colour: getRandomColour() },
+    { name: "TETRIS", colour: getRandomColour() },
+    { name: "TICTAC", colour: getRandomColour() },
+    { name: "UFO", colour: getRandomColour() },
+    { name: "VBRIX", colour: getRandomColour() },
+    { name: "VERS", colour: getRandomColour() },
+    { name: "WIPEOFF", colour: getRandomColour() },
   ];
 
   let selectedGameName: string | null = "WIPEOFF";
@@ -72,6 +72,12 @@
       event.detail.game === selectedGameName ? null : event.detail.game;
     setTimeout(() => (is_game_changing = false), GAME_CHOOSE_DURATION);
   };
+
+  function getRandomColour() {
+    const colours = ["green", "red", "darkorange", "purple", "blue"];
+    const index = Math.floor(Math.random()*colours.length);
+    return colours[index];
+  }
 </script>
 
 <main>
