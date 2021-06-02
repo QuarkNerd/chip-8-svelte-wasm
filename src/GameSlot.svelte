@@ -1,4 +1,4 @@
-<main> 
+<main>
   <div>
     <div class="connector" />
     <div class="connector" />

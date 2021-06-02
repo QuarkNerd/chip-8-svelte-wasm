@@ -6,6 +6,7 @@
   import Speaker from "./Speaker.svelte";
   import GameSlot from "./GameSlot.svelte";
   import GameCartriage from "./GameCartriage.svelte";
+  import SlidingButton from "./SlidingButton.svelte";
 
   import type { Game, Transition } from "./types";
 
@@ -20,6 +21,7 @@
   let loop: number;
   let screen: Screen;
   let playing: boolean = false;
+  loop = requestAnimationFrame(runEmulator);
 
   loadWasm();
   $: loadRom(selectedGame?.name);
@@ -33,19 +35,17 @@
   }
 
   async function loadRom(game: string | undefined) {
-    cancelAnimationFrame(loop);
     screen?.resetScreen();
     if (!game) return (playing = false);
     let response = await fetch(`roms/${game}`);
     let arrayBuffer = await response.arrayBuffer();
     let rom = new Uint8Array(arrayBuffer);
     wasmEmulator.load_rom(rom);
-    loop = requestAnimationFrame(runEmulator);
     playing = true;
   }
 
   function runEmulator() {
-    if (!playing) return;
+    if (!(playing && selectedGame)) return loop = requestAnimationFrame(runEmulator);
     wasmEmulator.on_animation_frame();
     screen.draw();
     loop = requestAnimationFrame(runEmulator);
@@ -82,6 +82,10 @@
         <GameCartriage on:gameClicked {game} />
       </div>
     {/each}
+
+  <div class="pause">
+    <SlidingButton bind:active={playing} />
+  </div>
 </main>
 
 <style>
@@ -118,4 +122,12 @@
     left: 20px;
     top: 280px;
   }
+  
+  .pause {
+    position: absolute;
+    left: 20px;
+    top: 330px;
+  }
+
+
 </style>
