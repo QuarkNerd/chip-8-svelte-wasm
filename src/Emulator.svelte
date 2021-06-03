@@ -24,23 +24,23 @@
   loop = requestAnimationFrame(runEmulator);
 
   loadWasm();
-  $: loadRom(selectedGame?.name);
+  $: loadRom(selectedGame);
 
   async function loadWasm() {
     const wasmModule = await wasm();
     wasmEmulator = new wasmModule.Emulator();
     displayArray = wasmEmulator.get_display();
     keysArray = wasmEmulator.get_keys();
-    loadRom(selectedGame?.name);
+    loadRom(selectedGame);
   }
 
-  async function loadRom(game: string | undefined) {
+  async function loadRom(game: Game | undefined) {
     screen?.resetScreen();
     if (!game) return (playing = false);
-    let response = await fetch(`roms/${game}`);
+    let response = await fetch(`roms/${game.name}`);
     let arrayBuffer = await response.arrayBuffer();
     let rom = new Uint8Array(arrayBuffer);
-    wasmEmulator.load_rom(rom);
+    wasmEmulator.load_rom(rom, game.yWrap);
     playing = true;
   }
 
@@ -122,12 +122,10 @@
     left: 20px;
     top: 280px;
   }
-  
+
   .pause {
     position: absolute;
     left: 20px;
     top: 330px;
   }
-
-
 </style>

@@ -34,30 +34,30 @@
   };
 
   const games: Game[] = [
-    { name: "15PUZZLE", colour: getRandomColour() },
-    { name: "BLINKY", colour: getRandomColour() },
-    { name: "BLITZ", colour: getRandomColour() },
-    { name: "BRIX", colour: getRandomColour() },
-    { name: "CONNECT4", colour: getRandomColour() },
-    { name: "GUESS", colour: getRandomColour() },
-    { name: "HIDDEN", colour: getRandomColour() },
-    { name: "IBM", colour: getRandomColour() },
-    { name: "INVADERS", colour: getRandomColour() },
-    { name: "KALEID", colour: getRandomColour() },
-    { name: "MAZE", colour: getRandomColour() },
-    { name: "MERLIN", colour: getRandomColour() },
-    { name: "MISSILE", colour: getRandomColour() },
-    { name: "PONG", colour: getRandomColour() },
-    { name: "PONG2", colour: getRandomColour() },
-    { name: "PUZZLE", colour: getRandomColour() },
-    { name: "SYZYGY", colour: getRandomColour() },
-    { name: "TANK", colour: getRandomColour() },
-    { name: "TETRIS", colour: getRandomColour() },
-    { name: "TICTAC", colour: getRandomColour() },
-    { name: "UFO", colour: getRandomColour() },
-    { name: "VBRIX", colour: getRandomColour() },
-    { name: "VERS", colour: getRandomColour() },
-    { name: "WIPEOFF", colour: getRandomColour() },
+    { name: "15PUZZLE", colour: getRandomColour(), yWrap: true },
+    { name: "BLINKY", colour: getRandomColour(), yWrap: true },
+    { name: "BLITZ", colour: getRandomColour(), yWrap: false },
+    { name: "BRIX", colour: getRandomColour(), yWrap: true },
+    { name: "CONNECT4", colour: getRandomColour(), yWrap: true },
+    { name: "GUESS", colour: getRandomColour(), yWrap: true },
+    { name: "HIDDEN", colour: getRandomColour(), yWrap: true },
+    { name: "IBM", colour: getRandomColour(), yWrap: true },
+    { name: "INVADERS", colour: getRandomColour(), yWrap: true },
+    { name: "KALEID", colour: getRandomColour(), yWrap: true },
+    { name: "MAZE", colour: getRandomColour(), yWrap: true },
+    { name: "MERLIN", colour: getRandomColour(), yWrap: true },
+    { name: "MISSILE", colour: getRandomColour(), yWrap: true },
+    { name: "PONG", colour: getRandomColour(), yWrap: true },
+    { name: "PONG2", colour: getRandomColour(), yWrap: true },
+    { name: "PUZZLE", colour: getRandomColour(), yWrap: true },
+    { name: "SYZYGY", colour: getRandomColour(), yWrap: true },
+    { name: "TANK", colour: getRandomColour(), yWrap: true },
+    { name: "TETRIS", colour: getRandomColour(), yWrap: true },
+    { name: "TICTAC", colour: getRandomColour(), yWrap: true },
+    { name: "UFO", colour: getRandomColour(), yWrap: true },
+    { name: "VBRIX", colour: getRandomColour(), yWrap: true },
+    { name: "VERS", colour: getRandomColour(), yWrap: true },
+    { name: "WIPEOFF", colour: getRandomColour(), yWrap: true },
   ];
 
   let selectedGameName: string | null = "WIPEOFF";
@@ -75,7 +75,7 @@
 
   function getRandomColour() {
     const colours = ["green", "red", "darkorange", "purple", "blue"];
-    const index = Math.floor(Math.random()*colours.length);
+    const index = Math.floor(Math.random() * colours.length);
     return colours[index];
   }
 </script>
@@ -96,4 +96,5 @@
     justify-content: center;
     margin: 10px auto;
   }
+
 </style>

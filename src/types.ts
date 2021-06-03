@@ -15,4 +15,5 @@ export interface Transition {
 export interface Game {
   name: string;
   colour: string;
+  yWrap: boolean;
 }

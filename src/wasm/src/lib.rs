@@ -24,8 +24,9 @@ impl Emulator {
         }
     }
 
-    pub fn load_rom(&mut self, rom: Uint8Array) {
+    pub fn load_rom(&mut self, rom: Uint8Array, y_wrap: bool) {
         self.reset();
+        self.cpu.display.y_wrap = y_wrap;
         self.cpu.load_rom(rom);
     }
 
