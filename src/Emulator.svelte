@@ -58,12 +58,7 @@
 
 <main>
   <div class="screen-frame">
-    <Screen
-      bind:this={screen}
-      offColour="#9aa040"
-      onColour="#000000"
-      {displayArray}
-    />
+    <Screen bind:this={screen} {displayArray} />
   </div>
   <Keyboard bind:keysArray />
   <div class="speaker">

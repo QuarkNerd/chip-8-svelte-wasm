@@ -1,7 +1,6 @@
 <script lang="typescript">
+  import { offColour, onColour } from "./stores.js";
   import { onMount } from "svelte";
-  export let onColour: string;
-  export let offColour: string;
   export let displayArray = new Uint8Array();
 
   const COLS: number = 64;
@@ -15,14 +14,14 @@
     ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     canvas.width = scale * COLS;
     canvas.height = scale * ROWS;
-    ctx.fillStyle = offColour;
+    ctx.fillStyle = $offColour;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   });
 
   export function draw() {
     if (ctx) {
       resetScreen();
-      ctx.fillStyle = onColour;
+      ctx.fillStyle = $onColour;
       displayArray.forEach((on: number, i: number) => {
         if (on) {
           const x = i % COLS;
@@ -34,7 +33,7 @@
   }
 
   export function resetScreen() {
-    ctx.fillStyle = offColour;
+    ctx.fillStyle = $offColour;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 </script>
