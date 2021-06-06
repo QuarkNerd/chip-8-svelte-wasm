@@ -1,6 +1,7 @@
 <script lang="ts">
   import Emulator from "./Emulator.svelte";
   import GamesHolder from "./GamesHolder.svelte";
+  import OptionsModal from "./OptionsModal.svelte";
 
   import type { Game, Transition } from "../types";
 
@@ -81,6 +82,7 @@
 </script>
 
 <main>
+  <OptionsModal open={true} />
   <Emulator {cartriageTransition} on:gameClicked={gameClicked} {selectedGame} />
   <GamesHolder
     {cartriageTransition}
@@ -96,5 +98,4 @@
     justify-content: center;
     margin: 10px auto;
   }
-
 </style>
