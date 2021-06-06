@@ -8,7 +8,7 @@
   import GameCartriage from "./GameCartriage.svelte";
   import SlidingButton from "./SlidingButton.svelte";
 
-  import type { Game, Transition } from "./types";
+  import type { Game, Transition } from "../types";
 
   import wasm from "./wasm/Cargo.toml";
 

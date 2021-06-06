@@ -2,7 +2,7 @@
   import Emulator from "./Emulator.svelte";
   import GamesHolder from "./GamesHolder.svelte";
 
-  import type { Game, Transition } from "./types";
+  import type { Game, Transition } from "../types";
 
   import { quintOut } from "svelte/easing";
   import { crossfade } from "svelte/transition";

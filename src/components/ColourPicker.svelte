@@ -4,7 +4,7 @@
     onColour,
     resetOffColour,
     resetOnColour,
-  } from "./stores.js";
+  } from "../stores.js";
 </script>
 
 <div>

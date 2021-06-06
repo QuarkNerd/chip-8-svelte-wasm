@@ -2,7 +2,7 @@
   import { flip } from "svelte/animate";
 
   import GameCartriage from "./GameCartriage.svelte";
-  import type { Game, Transition } from "./types";
+  import type { Game, Transition } from "../types";
 
   export let games: Game[];
   export let cartriageTransition: Transition;

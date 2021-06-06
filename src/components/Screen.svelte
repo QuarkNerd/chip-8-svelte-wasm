@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import { offColour, onColour } from "./stores.js";
+  import { offColour, onColour } from "../stores.js";
   import { onMount } from "svelte";
   export let displayArray = new Uint8Array();
 

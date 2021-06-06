@@ -1,6 +1,6 @@
 <script lang="typescript">
   import { createEventDispatcher } from "svelte";
-  import type { Game } from "./types";
+  import type { Game } from "../types";
 
   export let game: Game;
 
