@@ -1,17 +1,29 @@
 <script lang="typescript">
+  import type { Writable } from "svelte/store";
+
   export let store: SvelteStore<any>;
   export let inputType: string;
   export let name: string;
   export let displayName: string;
   export let defaultValue: any;
+  export let parser: ((input: string) => string) | null;
 
-  function typeAction(node: HTMLInputElement) {
-    node.type = inputType;
+  let node: HTMLInputElement;
+
+  function typeAction(_node: HTMLInputElement) {
+    _node.type = inputType;
+    node = _node;
   }
 
   function reset() {
-    const set = (store as any).set;
+    const set = (store as Writable<any>).set;
     if (set) set(defaultValue);
+  }
+
+  function onchange() {
+    if (parser != null) {
+      node.value = parser(node.value);
+    }
   }
 </script>
 
@@ -22,6 +34,7 @@
     </div>
     <div class="control">
       <input
+        on:change={onchange}
         use:typeAction
         id={`picker-${name}`}
         name={`picker-${name}`}
@@ -51,6 +64,6 @@
   }
 
   button {
-    height: 100%
+    height: 100%;
   }
 </style>
