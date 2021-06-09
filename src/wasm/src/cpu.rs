@@ -2,11 +2,10 @@ use crate::*;
 use js_sys::Uint8Array;
 use web_sys::console;
 
-static SPEED: u8 = 9;
-
 pub struct CPU {
     pub keyboard: [u8; 0x10],
     pub display: Display,
+    pub cycle_speed: u8,
     memory: [u8; 4096],
     v: [u8; 0x10],
     delay: u8,
@@ -18,7 +17,7 @@ pub struct CPU {
 }
 
 impl CPU {
-    pub fn new(display: Display) -> CPU {
+    pub fn new(display: Display, cycle_speed: u8) -> CPU {
         let mut cpu =
         CPU {
             keyboard: [0; 0x10],
@@ -31,6 +30,8 @@ impl CPU {
             stack_pointer: 0,
             stack: [0; 0x10],
             i: 0,
+            cycle_speed,
+
         };
         cpu.load_sprites_into_memory();
         cpu
@@ -47,7 +48,7 @@ impl CPU {
     }
 
     pub fn cycle(&mut self) {
-        for _ in 0..SPEED {
+        for _ in 0..self.cycle_speed {
             self.execute_next_instruction();
         }
 

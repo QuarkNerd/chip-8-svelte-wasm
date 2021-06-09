@@ -9,8 +9,8 @@
   import SlidingButton from "./SlidingButton.svelte";
 
   import type { Game, Transition } from "../types";
-
-  import wasm from "./wasm/Cargo.toml";
+  import { gameSpeed } from "../stores";
+  import wasm from "../wasm/Cargo.toml";
 
   export let selectedGame: Game | undefined;
   export let cartriageTransition: Transition;
@@ -23,12 +23,17 @@
   let playing: boolean = false;
   loop = requestAnimationFrame(runEmulator);
 
+  gameSpeed.subscribe((speed: number) => 
+    wasmEmulator?.set_speed(speed)
+  );
+
   loadWasm();
   $: loadRom(selectedGame);
 
   async function loadWasm() {
     const wasmModule = await wasm();
     wasmEmulator = new wasmModule.Emulator();
+    wasmEmulator.set_speed($gameSpeed);
     displayArray = wasmEmulator.get_display();
     keysArray = wasmEmulator.get_keys();
     loadRom(selectedGame);

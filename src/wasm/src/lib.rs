@@ -20,7 +20,7 @@ impl Emulator {
     pub fn new() -> Emulator {
         set_panic_hook();
         Emulator {
-            cpu: CPU::new(Display::new()),
+            cpu: CPU::new(Display::new(),9),
         }
     }
 
@@ -28,6 +28,10 @@ impl Emulator {
         self.reset();
         self.cpu.display.y_wrap = y_wrap;
         self.cpu.load_rom(rom);
+    }
+
+    pub fn set_speed(&mut self, speed: js_sys::Number) {
+        self.cpu.cycle_speed = speed.value_of() as u8
     }
 
     pub fn on_animation_frame(&mut self) {
@@ -43,7 +47,8 @@ impl Emulator {
     }
 
     fn reset(&mut self) {
-        self.cpu = CPU::new(Display::new());
+        let speed: u8 = self.cpu.cycle_speed;
+        self.cpu = CPU::new(Display::new(), speed);
     }
 }
 
