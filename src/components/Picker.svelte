@@ -22,7 +22,7 @@
 
   function onchange() {
     if (parser != null) {
-      node.value = parser(node.value);
+      (store as Writable<any>).set(parser(node.value));
     }
   }
 </script>
