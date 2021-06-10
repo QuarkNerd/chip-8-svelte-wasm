@@ -1,13 +1,11 @@
-<main>
-  <div>
-    <div class="connector" />
-    <div class="connector" />
-    <div class="connector" />
-  </div>
-</main>
+<div class="game-slot">
+  <div class="connector" />
+  <div class="connector" />
+  <div class="connector" />
+</div>
 
 <style>
-  main {
+  .game-slot {
     height: 32px;
     width: 82px;
     border-radius: 0 4px 4px 15px;

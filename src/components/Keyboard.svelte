@@ -57,15 +57,13 @@
   }
 </script>
 
-<main>
-  <div class="holder">
-    {#each keys as { keyCode, display }}
-      <div class="key" class:pressed={keysArray[keyCode]}>
-        {display}
-      </div>
-    {/each}
-  </div>
-</main>
+<div class="holder">
+  {#each keys as { keyCode, display }}
+    <div class="key" class:pressed={keysArray[keyCode]}>
+      {display}
+    </div>
+  {/each}
+</div>
 
 <style>
   .holder {

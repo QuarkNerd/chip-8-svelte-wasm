@@ -2,10 +2,10 @@
   export let active: boolean;
 </script>
 
-<main on:click={() => (active = !active)}>
+<div on:click={() => (active = !active)}>
   <div class="holder" class:active />
   <div class="button" class:active />
-</main>
+</div>
 
 <style>
   .holder {

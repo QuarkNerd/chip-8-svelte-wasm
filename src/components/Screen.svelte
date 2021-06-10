@@ -38,9 +38,7 @@
   }
 </script>
 
-<main>
-  <canvas bind:this={canvas} />
-</main>
+<canvas bind:this={canvas} />
 
 <style>
   canvas {

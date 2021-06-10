@@ -61,7 +61,7 @@
   $: gameArray = selectedGame ? [selectedGame] : [];
 </script>
 
-<main>
+<div class="Emulator">
   <div class="screen-frame">
     <Screen bind:this={screen} {displayArray} />
   </div>
@@ -86,10 +86,10 @@
   <div class="pause">
     <SlidingButton bind:active={playing} />
   </div>
-</main>
+</div>
 
 <style>
-  main {
+  .Emulator {
     position: relative;
     padding: 10px 0;
     margin: 0 5px;

@@ -27,22 +27,20 @@
   }
 </script>
 
-<div>
-  <div class="selector">
-    <div class="label">
-      <label for={`picker-${name}`}>{displayName}</label>
-    </div>
-    <div class="control">
-      <input
-        on:change={onchange}
-        use:typeAction
-        id={`picker-${name}`}
-        name={`picker-${name}`}
-        class:main-input={true}
-        bind:value={$store}
-      />
-      <button name={`picker-${name}-reset`} on:click={reset}>Reset</button>
-    </div>
+<div class="selector">
+  <div class="label">
+    <label for={`picker-${name}`}>{displayName}</label>
+  </div>
+  <div class="control">
+    <input
+      on:change={onchange}
+      use:typeAction
+      id={`picker-${name}`}
+      name={`picker-${name}`}
+      class:main-input={true}
+      bind:value={$store}
+    />
+    <button name={`picker-${name}-reset`} on:click={reset}>Reset</button>
   </div>
 </div>
 

@@ -1,12 +1,12 @@
-<main>
+<div class="speaker">
   <div class="band" />
   <div class="band" />
   <div class="band" />
   <div class="band" />
-</main>
+</div>
 
 <style>
-  main {
+  .speaker {
     display: flex;
     flex-direction: row;
   }

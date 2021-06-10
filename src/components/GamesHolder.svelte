@@ -11,7 +11,7 @@
   const receive = cartriageTransition.receive;
 </script>
 
-<main>
+<div class="games-holder">
   {#each games as game (game.name)}
     <div
       in:receive={{ key: game.name }}
@@ -21,10 +21,10 @@
       <GameCartriage on:gameClicked {game} />
     </div>
   {/each}
-</main>
+</div>
 
 <style>
-  main {
+  .games-holder {
     position: relative;
     margin: 0 5px;
     padding: 20px 0;
