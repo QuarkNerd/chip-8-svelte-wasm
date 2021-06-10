@@ -1,5 +1,4 @@
 <script lang="typescript">
-  // import ColourPicker from "./ColourPicker.svelte";
   import {
     offColour,
     onColour,
@@ -8,10 +7,12 @@
     DEFAULT_ON_COLOUR,
     DEFAULT_GAME_SPEED,
   } from "../stores.js";
+  import { SETTINGS_ICON } from "../icons";
+
   import Picker from "./Picker.svelte";
   import Modal from "./Modal.svelte";
 
-  export let open: boolean;
+  let open = false;
 
   function parseSpeedInput(value: string): string {
     let number = parseInt(value);
@@ -46,3 +47,28 @@
     parser={parseSpeedInput}
   />
 </Modal>
+<div class="settings" on:click={() => open = true}>
+  {@html SETTINGS_ICON}
+</div>
+
+<style>
+  .settings {
+    position: fixed;
+    right: -35px;
+    top: -35px;
+    z-index: 100;
+
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+
+    box-shadow: rgb(0 0 0) -1px 1px 2px;
+  }
+
+  .settings:hover {
+    right: 0px;
+    top: 0px;
+
+    opacity: 1;
+  }
+</style>

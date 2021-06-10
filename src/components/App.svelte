@@ -82,7 +82,7 @@
 </script>
 
 <main>
-  <OptionsModal open={true} />
+  <OptionsModal />
   <Emulator {cartriageTransition} on:gameClicked={gameClicked} {selectedGame} />
   <GamesHolder
     {cartriageTransition}
