@@ -6,10 +6,10 @@ pub struct CPU {
     pub keyboard: [u8; 0x10],
     pub display: Display,
     pub cycle_speed: u8,
+    pub sound: [u8; 1],
     memory: [u8; 4096],
     v: [u8; 0x10],
     delay: u8,
-    sound: u8,
     pc: u16,
     stack_pointer: usize,
     stack: [u16; 0x10],
@@ -25,7 +25,7 @@ impl CPU {
             memory: [0; 4096],
             v: [0; 0x10],
             delay: 0,
-            sound: 0,
+            sound: [0; 1],
             pc: 0x200,
             stack_pointer: 0,
             stack: [0; 0x10],
@@ -55,6 +55,9 @@ impl CPU {
         //timers
         if self.delay > 0 {
             self.delay -= 1;
+        }
+        if self.sound[0] > 0 {
+            self.sound[0] -= 1;
         }
     }
 
@@ -153,8 +156,8 @@ impl CPU {
                 }
             },
             (0xF, x, 1, 5) => self.delay = self.v[x],
-            (0xF, x, 1, 8) => self.sound = self.v[x],
-            (0xF, x, 1, 0xE) => self.i += self.v[x] as u16, //potential overflow
+            (0xF, x, 1, 8) => self.sound[0] = self.v[x],
+            (0xF, x, 1, 0xE) => self.i = self.i.overflowing_add(self.v[x] as u16).0,
             (0xF, x, 2, 9) => self.i = self.v[x] as u16 * 5,
             (0xF, x, 3, 3) => {
                 let vx = self.v[x];

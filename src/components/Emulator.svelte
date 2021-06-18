@@ -18,9 +18,11 @@
   let wasmEmulator: any;
   let keysArray = new Uint8Array(0x10);
   let displayArray: Uint8Array;
+  let soundArray: Uint8Array = new Uint8Array(1);
   let loop: number;
   let screen: Screen;
   let playing: boolean = false;
+  let soundOn: boolean = false;
   loop = requestAnimationFrame(runEmulator);
 
   gameSpeed.subscribe((speed: number) => 
@@ -36,6 +38,7 @@
     wasmEmulator.set_speed($gameSpeed);
     displayArray = wasmEmulator.get_display();
     keysArray = wasmEmulator.get_keys();
+    soundArray = wasmEmulator.get_sound();
     loadRom(selectedGame);
   }
 
@@ -54,6 +57,7 @@
     wasmEmulator.on_animation_frame();
     screen.draw();
     loop = requestAnimationFrame(runEmulator);
+    soundOn = soundArray[0] > 0;
   }
   const send = cartriageTransition.send;
   const receive = cartriageTransition.receive;
