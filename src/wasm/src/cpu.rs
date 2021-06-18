@@ -59,6 +59,8 @@ impl CPU {
     }
 
     fn execute_next_instruction(&mut self) {
+
+        set_panic_hook();
         // Instruction has 4 Base-16 characters
         // 0x0nnn (addr) or 0x0xyn (n = nibble) or 0x00kk (byte) 0xC000 (code)
         let opcode = ((self.memory[self.pc as usize] as u16) << 8)
@@ -74,7 +76,7 @@ impl CPU {
             (0, 0, 0xE, 0) => self.display.clear(),
             (0, 0, 0xE, 0xE) => {
                 self.stack_pointer -= 1;
-                self.pc = self.stack[self.stack_pointer]
+                self.pc = self.stack[self.stack_pointer];
             },
             (1, _, _, _) => self.pc = CPU::get_nnn(opcode),
             (2, _, _, _) => {
@@ -121,10 +123,10 @@ impl CPU {
             (0xD, x, y, nibble) => {
                 self.v[0xF] = 0;
                 for y_diff in 0..nibble {
-                    let y = self.v[y] + y_diff as u8; // potential overflow
+                    let y = self.v[y].overflowing_add(y_diff as u8).0;
                     let mut sprite_byte = self.memory[(self.i + y_diff) as usize];
                     for x_diff in 0..8 {
-                        let x = self.v[x] + x_diff as u8; // potential overflow
+                        let x = self.v[x].overflowing_add(x_diff as u8).0;
 
                         if (sprite_byte & 0x80) >> 7 == 1 {
                             if self.display.set_pixel(x, y) {
