@@ -13,7 +13,11 @@
   }
 </script>
 
-<div class="game-cartriage" on:click={gameClicked} style="background: {game.colour};">
+<div
+  class="game-cartriage"
+  on:click={gameClicked}
+  style="background: {game.colour};"
+>
   <div class="logo">C8</div>
   <div class="name">{game.name}</div>
 </div>

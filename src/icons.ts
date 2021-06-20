@@ -1,5 +1,4 @@
-export const SETTINGS_ICON 
-  = `<?xml version="1.0" ?>
+export const SETTINGS_ICON = `<?xml version="1.0" ?>
     <svg style="enable-background:new 0 0 24 24;" version="1.1" viewBox="-4 -4 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g id="info"/>
         <circle cx="12" cy="12" r="15" fill="#cccccc"></circle>

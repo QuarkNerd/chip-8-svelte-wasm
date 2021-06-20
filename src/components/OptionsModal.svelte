@@ -47,7 +47,7 @@
     parser={parseSpeedInput}
   />
 </Modal>
-<div class="settings" on:click={() => open = true}>
+<div class="settings" on:click={() => (open = true)}>
   {@html SETTINGS_ICON}
 </div>
 

@@ -12,14 +12,14 @@
   let is_game_changing = false;
 
   const [send, receive] = crossfade({
-    duration: (_) => GAME_CHOOSE_DURATION,
+    duration: (_) => GAME_CHOOSE_DURATION - 100,
 
     fallback(node, _, __) {
       const style = getComputedStyle(node);
       const transform = style.transform === "none" ? "" : style.transform;
 
       return {
-        duration: 600,
+        duration: GAME_CHOOSE_DURATION - 100,
         easing: quintOut,
         css: (t) => `
   				transform: ${transform} scale(${t});

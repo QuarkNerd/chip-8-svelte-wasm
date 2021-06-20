@@ -25,9 +25,7 @@
   let soundOn: boolean = false;
   loop = requestAnimationFrame(runEmulator);
 
-  gameSpeed.subscribe((speed: number) => 
-    wasmEmulator?.set_speed(speed)
-  );
+  gameSpeed.subscribe((speed: number) => wasmEmulator?.set_speed(speed));
 
   loadWasm();
   $: loadRom(selectedGame);
@@ -53,7 +51,8 @@
   }
 
   function runEmulator() {
-    if (!(playing && selectedGame)) return loop = requestAnimationFrame(runEmulator);
+    if (!(playing && selectedGame))
+      return (loop = requestAnimationFrame(runEmulator));
     wasmEmulator.on_animation_frame();
     screen.draw();
     loop = requestAnimationFrame(runEmulator);
@@ -71,21 +70,21 @@
   </div>
   <Keyboard bind:keysArray />
   <div class="speaker">
-    <Speaker />
+    <Speaker on={soundOn} />
   </div>
   <div class="gameslot">
     <GameSlot />
   </div>
-    {#each gameArray as game (game.name)}
-      <div
-        in:receive={{ key: game.name }}
-        out:send={{ key: game.name }}
-        animate:flip
-        class="gameslot"
-      >
-        <GameCartriage on:gameClicked {game} />
-      </div>
-    {/each}
+  {#each gameArray as game (game.name)}
+    <div
+      in:receive={{ key: game.name }}
+      out:send={{ key: game.name }}
+      animate:flip
+      class="gameslot"
+    >
+      <GameCartriage on:gameClicked {game} />
+    </div>
+  {/each}
 
   <div class="pause">
     <SlidingButton bind:active={playing} />

@@ -2,22 +2,23 @@
   export let on: boolean;
 
   const frequency = 440;
-  const audioCtx = new(window.AudioContext || (window as any).webkitAudioContext)();
+  const audioCtx = new (window.AudioContext ||
+    (window as any).webkitAudioContext)();
   const oscillator = audioCtx.createOscillator();
   const gainNode = audioCtx.createGain();
-  
+
   gainNode.gain.value = 0.01;
-  oscillator.type = 'square';
+  oscillator.type = "square";
   oscillator.frequency.value = frequency;
-  oscillator.connect(gainNode)
+  oscillator.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscillator.start();
 
   $: executeNotes(on);
 
   function executeNotes(on: boolean) {
-    if (on) oscillator.connect(gainNode)
-    else oscillator.disconnect(gainNode)
+    if (on) oscillator.connect(gainNode);
+    else oscillator.disconnect(gainNode);
   }
 </script>
 
