@@ -10,7 +10,7 @@
 
   import type { Game, Transition } from "../types";
   import { gameSpeed } from "../stores";
-  import wasm from "../wasm/Cargo.toml";
+  import wasm from "./../wasm/Cargo.toml";
 
   export let selectedGame: Game | undefined;
   export let cartriageTransition: Transition;
