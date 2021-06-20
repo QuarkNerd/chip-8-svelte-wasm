@@ -82,7 +82,7 @@ export default {
 
     rust({
       verbose: true,
-      serverPath: "/build/",
+      serverPath: "./build/",
     }),
   ],
   watch: {
