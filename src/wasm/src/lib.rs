@@ -3,11 +3,8 @@ use cpu::*;
 use display::*;
 use js_sys::Uint8Array;
 use wasm_bindgen::prelude::*;
-use wasm_timer::Instant;
-use web_sys::console;
 
 use std::panic;
-
 
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]

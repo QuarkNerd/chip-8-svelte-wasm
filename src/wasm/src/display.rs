@@ -1,5 +1,4 @@
 use js_sys::Uint8Array;
-use web_sys::console;
 
 const COLS: usize = 64;
 const COLS_U8: u8 = 64;

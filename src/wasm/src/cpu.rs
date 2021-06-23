@@ -52,7 +52,6 @@ impl CPU {
             self.execute_next_instruction();
         }
 
-        //timers
         if self.delay > 0 {
             self.delay -= 1;
         }
@@ -116,7 +115,7 @@ impl CPU {
                 self.v[x] = diff;
             },
             (8, x, _, 0xE) => {
-                self.v[0xF] = (self.v[x] & 0x80); //EXPLAIN
+                self.v[0xF] = self.v[x] & 0x80; //EXPLAIN
                 self.v[x] <<= 1;
             },
             (9, x, y, 0) => if self.v[x] != self.v[y] { self.pc += 2 },
