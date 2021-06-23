@@ -95,7 +95,7 @@
   .Emulator {
     position: relative;
     padding: 10px 0;
-    margin: 0 5px;
+    margin: 5px;
     width: 450px;
     border-radius: 35px;
     flex-shrink: 0;

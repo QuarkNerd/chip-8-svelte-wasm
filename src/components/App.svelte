@@ -94,6 +94,7 @@
 <style>
   main {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     margin: 10px auto;

@@ -7,7 +7,7 @@
 <style>
   .game-slot {
     height: 32px;
-    width: 82px;
+    width: 90px;
     border-radius: 0 4px 4px 15px;
 
     background: darkgreen;

@@ -27,7 +27,7 @@
     margin: 0 auto;
 
     height: 35px;
-    width: 82px;
+    width: 90px;
     border-radius: 0 4px 4px 15px;
 
     box-shadow: rgb(0 0 0) -2px 3px 5px,
@@ -49,12 +49,12 @@
     font-family: Chalkduster, fantasy;
     color: white;
     line-height: 25px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .name {
     color: aliceblue;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     font-weight: bold;
     line-height: 35px;
   }

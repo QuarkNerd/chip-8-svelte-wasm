@@ -26,10 +26,10 @@
 <style>
   .games-holder {
     position: relative;
-    margin: 0 5px;
+    margin: 5px;
     padding: 20px 0;
     height: 400px;
-    width: 280px;
+    width: 300px;
     border-radius: 35px;
 
     background-color: lightgray;
